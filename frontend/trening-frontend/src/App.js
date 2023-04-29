@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, } from 'react-router-dom';
+import Treninginfo from "./routes/traningDesc/treningInfo";
+import MainConpoment from './routes/mainComponetn/mainComponent';
+import LoginRouteComp from './routes/loginRoute/loginrouteComp';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+
+      <Routes>
+        <Route path='/' element={<MainConpoment />}></Route>
+        <Route path='/train' element={<Treninginfo />}></Route>
+        <Route path='/login' element={<LoginRouteComp />}></Route>
+
+
+
+
+      </Routes>
     </div>
   );
 }
