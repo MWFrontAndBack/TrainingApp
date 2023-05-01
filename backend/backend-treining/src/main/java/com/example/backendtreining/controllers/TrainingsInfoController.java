@@ -24,9 +24,9 @@ public class TrainingsInfoController {
     }
 
     @GetMapping()
-    public List<Training> getTrainings(){
+    public List<String> getTrainings(){
         List<Training> all = trainingRepository.findAll();
 
-        return all;
+        return all.stream().map((a)->a.getDescription()).toList();
     }
 }

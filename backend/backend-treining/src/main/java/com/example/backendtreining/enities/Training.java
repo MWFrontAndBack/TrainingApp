@@ -1,9 +1,10 @@
 package com.example.backendtreining.enities;
 
-import com.example.backendtreining.enities.enums.TrainingType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,13 +16,16 @@ public class Training {
     private Long idTraining;
 
     private String name;
+    private String photo;
 
     private String description;
-    private String imageSrc;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "normal_user_id")
+    private NormalUser normalUser;
 
-    private TrainingType typeOfTraining;
+    @OneToMany(mappedBy = "training" ,cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Excercise> excerciseList;
 
     public Training() {
     }
@@ -32,8 +36,7 @@ public class Training {
                 "idTraining=" + idTraining +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", imageSrc='" + imageSrc + '\'' +
-                ", typeOfTraining=" + typeOfTraining +
+                ", imageSrc='" + photo + '\'' +
                 '}';
     }
 }
