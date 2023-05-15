@@ -1,9 +1,11 @@
 package com.example.backendtreining.enities;
 
 import com.example.backendtreining.enities.enums.TrainingType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
 
 @Getter
 @Setter
@@ -19,10 +21,67 @@ public class Excercise {
     @Enumerated(EnumType.STRING)
     private TrainingType trainingType;
     @ManyToOne
-    @JoinColumn(name = "training_id")
+    @JoinColumn(name = "id_training")
     private Training training;
 
     public Excercise() {
+    }
+
+    public Excercise(Long id, String name, String photo, int calories, TrainingType trainingType, Training training) {
+        this.id = id;
+        this.name = name;
+        this.photo = photo;
+        this.calories = calories;
+        this.trainingType = trainingType;
+        this.training = training;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public void setCalories(int calories) {
+        this.calories = calories;
+    }
+
+    public void setTrainingType(TrainingType trainingType) {
+        this.trainingType = trainingType;
+    }
+    @JsonIgnore
+    public void setTraining(Training training) {
+        this.training = training;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public int getCalories() {
+        return calories;
+    }
+
+    public TrainingType getTrainingType() {
+        return trainingType;
+    }
+    @JsonIgnore
+    public Training getTraining() {
+        return training;
     }
 
     @Override
@@ -33,7 +92,6 @@ public class Excercise {
                 ", photo='" + photo + '\'' +
                 ", calories=" + calories +
                 ", trainingType=" + trainingType +
-                ", training=" + training +
                 '}';
     }
 }
